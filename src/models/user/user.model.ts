@@ -1,13 +1,21 @@
-import { Model, Optional } from "sequelize";
+import { DataTypes } from "sequelize";
 import sequelize from "..";
+import UserInstance from "./userTypes";
+import Ticket from "../tickets/ticket.model";
 
-interface IUser {
-  id: number;
-  username: string;
-  password: string;
-}
+const User = sequelize.define<UserInstance>("User", {
+  id: {
+    type: DataTypes.NUMBER,
+    primaryKey: true,
+  },
+  username: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+});
 
-interface UserAttributes extends Optional<IUser, "id"> {}
-interface UserInstance extends Model<IUser, UserAttributes> {}
-
-const User = sequelize.define<UserInstance>("User", {});
+export default User;

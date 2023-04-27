@@ -2,8 +2,13 @@ import express, { Request, Response } from "express";
 import { createServer } from "http";
 import bodyParser from "body-parser";
 import cors from "cors";
-import sequelize from "./models/";
 import { Server } from "socket.io";
+
+import User from "./models/user/user.model";
+import Ticket from "./models/tickets/ticket.model";
+import Chat from "./models/rooms/room.model";
+import Message from "./models/messages/message.model";
+import Participants from "./models/participants/participants.model";
 
 const port = process.env.PORT || 3000;
 
@@ -11,6 +16,20 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
+
+const startServer = async () => {
+  try {
+    await User.sync({ force: true });
+    await Ticket.sync({ force: true });
+    await Chat.sync({ force: true });
+    await Participants.sync({ force: true });
+    await Message.sync({ force: true });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+startServer();
 
 const server = createServer(app);
 const io = new Server(server, {
