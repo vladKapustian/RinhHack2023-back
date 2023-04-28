@@ -11,10 +11,21 @@ const Participants = sequelize.define<ParticipantsInstance>("Participants", {
   },
   roomId: {
     type: DataTypes.INTEGER,
+    references:{
+        model:"Room",
+        key: "id"
+    }
+  },
+  userId: {
+    type: DataTypes.INTEGER,
+    references:{
+        model:"User",
+        key: "id"
+    }
   },
 });
 
-Participants.hasMany(User);
-Room.hasOne(Participants, { foreignKey: "roomId", sourceKey:"roomId" });
+// Participants.hasMany(User, { sourceKey: "userId" });
+// Room.hasOne(Participants, { foreignKey: "roomId", sourceKey: "roomId" });
 
 export default Participants;

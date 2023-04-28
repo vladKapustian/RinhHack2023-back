@@ -1,6 +1,6 @@
 import { Optional, Model } from "sequelize";
 
-interface IRoom {
+export interface IRoom {
   id: number;
   title: string;
   ticketId:number

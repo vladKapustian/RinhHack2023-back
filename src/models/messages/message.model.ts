@@ -14,13 +14,21 @@ const Message = sequelize.define<MessageInstance>("Message", {
   },
   roomId: {
     type: DataTypes.INTEGER,
+    references: {
+      model: "Room",
+      key: "Id",
+    },
   },
   userId: {
     type: DataTypes.INTEGER,
+    references: {
+      model: "User",
+      key: "Id",
+    },
   },
 });
 
-Message.hasOne(User, { foreignKey: "userId", sourceKey: "userId" });
-Message.hasOne(Room, { foreignKey: "roomId", sourceKey: "roomId" });
+// Message.hasOne(User, { foreignKey: "userId", sourceKey: "userId" });
+// Message.hasOne(Room, { foreignKey: "roomId", sourceKey: "roomId" });
 
 export default Message;

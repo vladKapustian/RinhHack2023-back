@@ -20,12 +20,13 @@ const Ticket = sequelize.define<TicketInstance>("Ticket", {
     type: DataTypes.ENUM(...Object.values(["Low", "Medium", "High", "Ulta high", "Closed"])),
     allowNull: false,
   },
-  ticketId: {
+  roomId: {
     type: DataTypes.INTEGER,
+    references: { model: "Room", key: "id" },
   },
 });
 
-Ticket.hasOne(Room, { foreignKey: "ticketId", sourceKey: "ticketId" });
+// Ticket.hasOne(Room, { foreignKey: "roomId", sourceKey: "roomId" });
 // Room.belongsTo(Ticket);
 
 export default Ticket;

@@ -1,10 +1,10 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from "..";
-import RoomInstance from "./room";
+import RoomInstance, { IRoom } from "./room";
 import User from "../user/user.model";
 import Participants from "../participants/participants.model";
 
-const Room = sequelize.define<RoomInstance>("Rooms", {
+const Room = sequelize.define<Model<IRoom>>("Rooms", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -14,6 +14,7 @@ const Room = sequelize.define<RoomInstance>("Rooms", {
   },
   ticketId: {
     type: DataTypes.INTEGER,
+    references: { model: "Ticket", key: "id" },
   },
 });
 
