@@ -6,9 +6,9 @@ import { Server } from "socket.io";
 
 import User from "./models/user/user.model";
 import Ticket from "./models/tickets/ticket.model";
-import Chat from "./models/rooms/room.model";
 import Message from "./models/messages/message.model";
 import Participants from "./models/participants/participants.model";
+import Room from "./models/rooms/room.model";
 
 const port = process.env.PORT || 3000;
 
@@ -21,7 +21,7 @@ const startServer = async () => {
   try {
     await User.sync({ force: true });
     await Ticket.sync({ force: true });
-    await Chat.sync({ force: true });
+    await Room.sync({ force: true });
     await Participants.sync({ force: true });
     await Message.sync({ force: true });
   } catch (err) {

@@ -13,6 +13,7 @@ interface ITicket {
   title: string;
   description: string;
   priority: Priority;
+  ticketId:number
   //   user_id: number;
 }
 

@@ -5,7 +5,7 @@ import Ticket from "../tickets/ticket.model";
 
 const User = sequelize.define<UserInstance>("User", {
   id: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     primaryKey: true,
   },
   username: {

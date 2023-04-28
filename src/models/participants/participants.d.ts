@@ -2,6 +2,7 @@ import { Optional, Model } from "sequelize";
 
 interface IParticipants {
   id: number;
+  roomId:number
 }
 
 interface ParticipantsAttributes extends Optional<IParticipants, "id"> {}

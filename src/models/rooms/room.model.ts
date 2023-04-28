@@ -6,11 +6,14 @@ import Participants from "../participants/participants.model";
 
 const Room = sequelize.define<RoomInstance>("Rooms", {
   id: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     primaryKey: true,
   },
   title: {
     type: DataTypes.STRING,
+  },
+  ticketId: {
+    type: DataTypes.INTEGER,
   },
 });
 

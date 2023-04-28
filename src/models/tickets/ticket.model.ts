@@ -5,7 +5,7 @@ import Room from "../rooms/room.model";
 
 const Ticket = sequelize.define<TicketInstance>("Ticket", {
   id: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     primaryKey: true,
   },
   title: {
@@ -20,9 +20,12 @@ const Ticket = sequelize.define<TicketInstance>("Ticket", {
     type: DataTypes.ENUM(...Object.values(["Low", "Medium", "High", "Ulta high", "Closed"])),
     allowNull: false,
   },
+  ticketId: {
+    type: DataTypes.INTEGER,
+  },
 });
 
-Ticket.hasOne(Room);
-Room.belongsTo(Ticket);
+Ticket.hasOne(Room, { foreignKey: "ticketId", sourceKey: "ticketId" });
+// Room.belongsTo(Ticket);
 
 export default Ticket;

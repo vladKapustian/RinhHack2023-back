@@ -6,15 +6,21 @@ import Room from "../rooms/room.model";
 
 const Message = sequelize.define<MessageInstance>("Message", {
   id: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     primaryKey: true,
   },
   text: {
     type: DataTypes.STRING,
   },
+  roomId: {
+    type: DataTypes.INTEGER,
+  },
+  userId: {
+    type: DataTypes.INTEGER,
+  },
 });
 
-User.hasOne(Message);
-Room.hasOne(Message);
+Message.hasOne(User, { foreignKey: "userId", sourceKey: "userId" });
+Message.hasOne(Room, { foreignKey: "roomId", sourceKey: "roomId" });
 
 export default Message;
